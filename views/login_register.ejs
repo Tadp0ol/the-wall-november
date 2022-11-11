@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Registration</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="/assets/js/login_register.js"></script>
+</head>
+<body>
+    <h1>Register</h1>
+    <form action="/user/register" id="register_form" method="POST">
+        <input type="text" name="first_name" placeholder="First Name">
+        <input type="text" name="last_name" placeholder="Last Name">
+        <input type="text" name="email_address" placeholder="Email Address">
+        <input type="password" name="password" placeholder="Password">
+        <input type="password" name="confirm_password" placeholder="Confirm Password">
+        <input type="submit" value="Register">
+    </form>
+    <h1>Login</h1>
+    <form action="/user/login" id="login_form" method="POST">
+        <input type="text" name="email_address" placeholder="Email Address">
+        <input type="password" name="password">
+        <input type="submit" value="Login">
+    </form>
+</body>
+</html>

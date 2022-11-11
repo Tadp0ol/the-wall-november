@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="/assets/js/dashboard.js"></script>
+</head>
+<body>
+    <h1>CodingDojo</h1>
+    <p>Wellcome <%= user_data.first_name %> </p>
+
+    <form action="/message/post_message" id="post_message_form" method="POST">
+        <textarea name="message" id="" cols="30" rows="10"></textarea>
+        <input type="submit" value="Post a message">
+    </form>
+
+    <ul>
+        <%
+        
+            for(let message_index = 0; message_index < messages.length; message_index++){
+                let message = messages[message_index]; 
+                let comments = (message.comments) ? JSON.parse(message.comments) : [];
+                %>
+
+                <li class="message">
+                    <p><%= message.full_name %> - <%= message.created_at %></p>
+                    <p><%= message.message %></p>
+
+                    <form action="/message/delete_message" class="delete_message">
+                        <input type="hidden" name="message_id" value="<%= message.id %>">
+                        <input type="submit" value="x">
+                    </form>
+
+                    <ul class="comments">
+                        <%
+                            for(let comment_index = 0; comment_index < comments.length; comment_index++){ 
+                                let commnet = comments[comment_index];
+                                %>
+                                <li>
+                                    <p><%= commnet.full_name %> - <%= commnet.created_at %></p>
+                                    <p><%= commnet.comment %></p>
+                                    <form action="/comment/delete_comment" class="delete_comment">
+                                        <input type="hidden" name="message_id" value="<%= message.id %>">
+                                        <input type="hidden" name="comment_id" value="<%= commnet.comment_id %>">
+                                        <input type="submit" value="x">
+                                    </form>
+                                </li>
+                        <%  }
+                        %>
+                    </ul>
+                    <form action="/comment/post_comment" class="post_comment_form" method="POST">
+                        <input type="hidden" name="message_id" value="<%= message.id %>">
+                        <textarea name="comment" cols="30" rows="10"></textarea>
+                        <input type="submit" value="Post a comment">
+                    </form>
+                </li>
+        <%    }
+        %>
+    </ul>
+
+    
+</body>
+</html>
