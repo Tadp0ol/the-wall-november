@@ -6,8 +6,6 @@ const Session = require("express-session");
 const Constants = require("./configs/constants");
 const ViewRoute = require("./routes/views.routes");
 const UserRoute = require("./routes/users.routes");
-const MessageRoute = require("./routes/messages.routes");
-const CommentRoute = require("./routes/comments.routes");
 
 const App = Express();
 
@@ -26,8 +24,6 @@ App.use(Session({
 
 App.use("/", ViewRoute);
 App.use("/user", UserRoute);
-App.use("/message", MessageRoute);
-App.use("/comment", CommentRoute);
 
 App.listen(Constants.PORT, () => {
     console.log(`The wall app listening on port ${Constants.PORT}`);
