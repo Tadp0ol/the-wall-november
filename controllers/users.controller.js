@@ -1,7 +1,6 @@
 const EmailValidator = require("email-validator")
 const MD5 = require("md5")
 const UserModel = require("../models/users.model");
-const MessagesModel = require("../models/messages.model");
 const { checkFields } = require("../helpers/validation.helpers");
 
 class UserController{
