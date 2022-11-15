@@ -11,4 +11,8 @@ ViewRoute.get("/dashboard", (req, res) =>{
     return new ViewController(req, res).dashboard();
 });
 
+ViewRoute.get("/logout", (req, res) =>{
+    return new ViewController(req, res).logout();
+});
+
 module.exports = ViewRoute;

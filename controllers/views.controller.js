@@ -20,13 +20,16 @@ class ViewController{
 
     dashboard = async () => {
         if(this.#req.session?.user_data){
-            let fetch_messages = [];
-
-            this.#res.render("dashboard.ejs", { user_data: this.#req.session.user_data, messages: fetch_messages.result });
+            this.#res.send("Dashboard")
         }
         else{
             this.#res.redirect("/");
         }
+    }
+    
+    logout  = async(req, res) => {
+        this.#req.session.destroy();
+        this.#res.redirect("/");
     }
 }
 
