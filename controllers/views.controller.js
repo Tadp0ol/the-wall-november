@@ -1,4 +1,4 @@
-
+const MessagesModel = require("../models/messages.model");
 
 class ViewController{
     #req;
@@ -20,7 +20,9 @@ class ViewController{
 
     dashboard = async () => {
         if(this.#req.session?.user_data){
-            this.#res.send("Dashboard")
+            let messages = await MessagesModel.fetchMessages();
+
+            this.#res.render("dashboard.ejs", {user: this.#req.session.user_data, messages: messages.result})
         }
         else{
             this.#res.redirect("/");
